@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        KUBECONFIG = credentials('jenkins_secret')  // Ensure this matches your Jenkins credential ID
+        KUBECONFIG = credentials('minkube_secret')  // Ensure this matches your Jenkins credential ID
     }
 
     stages {

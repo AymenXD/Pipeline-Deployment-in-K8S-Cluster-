@@ -9,27 +9,12 @@ pipeline {
 
         stage('Deploy to Minikube') {
             steps {
-                sh 'kubectl get nodes'
-                sh 'kubectl get nodes -n  jenkins'
-                echo 'Applying Kubernetes configurations...'
-                sh 'kubectl apply -f webapp-deployment.yaml'
-                sh 'kubectl apply -f webapp-loadbalancer.yaml'
-                sh 'kubectl apply -f webapp-service.yaml'
+                kubernetesDeploy(configs: "webapp-deployment.yaml", kubeconfigId: "kubernetes")
+                kubernetesDeploy(configs: "webapp-loadbalancer.yaml", kubeconfigId: "kubernetes")
+                kubernetesDeploy(configs: "webapp-service.yaml", kubeconfigId: "kubernetes")
             }
         }
 
-        stage('Verify Deployment') {
-            steps {
-                echo 'Checking pods...'
-                sh 'kubectl get pods -l app=webapp'
-
-                echo 'Checking services...'
-                sh 'kubectl get svc -l app=webapp'
-
-                echo 'Checking load balancer...'
-                sh 'kubectl describe svc webapp-loadbalancer'
-            }
-        }
     }
 
     post {

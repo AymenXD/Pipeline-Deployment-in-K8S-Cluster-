@@ -1,14 +1,13 @@
 pipeline {
     agent {
         kubernetes {
-            label 'k8s-agent'  // Customize if needed
-            defaultContainer 'jnlp'
+            label 'k8s-agent'
         }
     }
     stages {
         stage('Clone Repository') {
             steps {
-                git url: 'https://your-repo-url.git', branch: 'main'
+                git url: 'https://github.com/AymenXD/Pipeline-Deployment-in-K8S-Cluster-.git', branch: 'main'
             }
         }
 

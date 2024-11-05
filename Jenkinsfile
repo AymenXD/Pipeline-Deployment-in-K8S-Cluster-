@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        kubernetes {
-            label 'k8s-agent'
-        }
-    }
+    agent any
     stages {
         stage('Clone Repository') {
             steps {

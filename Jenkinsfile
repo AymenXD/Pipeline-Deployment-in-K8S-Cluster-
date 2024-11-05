@@ -2,18 +2,15 @@ pipeline {
     agent {
         kubernetes {
             yaml """
-            apiVersion: v1
-            kind: Pod
-            metadata:
-            labels:
-                app: kube
-            spec:
-            containers:
-            - name: kubectl
-                image: bitnami/kubectl:latest
-                command:
-                - cat
-                tty: true
+                apiVersion: v1
+                kind: Pod
+                spec:
+                    containers:
+                    - name: kubectl
+                        image: bitnami/kubectl:latest
+                        command:
+                        - cat
+                        tty: true
             """
         }
     }

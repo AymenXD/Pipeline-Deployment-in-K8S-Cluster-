@@ -1,13 +1,13 @@
 pipeline {
     agent {
         kubernetes {
-            label 'k8s-agent'
+            label 'k8s'
         }
     }
     stages {
         stage('Clone Repository') {
             steps {
-                git url: 'https://github.com/AymenXD/Pipeline-Deployment-in-K8S-Cluster-.git', branch: 'main'
+                git url: 'https://github.com/AymenXD/Pipeline-Deployment-in-K8S-Cluster-.git', branch: 'master'
             }
         }
 

@@ -17,9 +17,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                container('git') {
                     git url: 'https://github.com/AymenXD/Pipeline-Deployment-in-K8S-Cluster-.git', branch: 'master'
-                }
             }
         }
 

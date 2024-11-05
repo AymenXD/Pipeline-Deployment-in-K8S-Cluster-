@@ -1,5 +1,9 @@
 pipeline {
-    agent any  // Use any agent, assuming the global configuration uses jenkins-docker-kubectl
+    agent any
+
+    environment {
+        KUBECONFIG = credentials('jenkins_secret')  // Ensure this matches your Jenkins credential ID
+    }
 
     stages {
         stage('Clone Repository') {
@@ -11,7 +15,6 @@ pipeline {
         stage('Deploy to Minikube') {
             steps {
                 echo 'Applying Kubernetes configurations...'
-                sh 'ls -la'  // Verify YAML files are present in the workspace
                 sh 'kubectl apply -f webapp-deployment.yaml --validate=false'
                 sh 'kubectl apply -f webapp-loadbalancer.yaml --validate=false'
                 sh 'kubectl apply -f webapp-service.yaml --validate=false'

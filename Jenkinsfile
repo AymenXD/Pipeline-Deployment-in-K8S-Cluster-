@@ -12,9 +12,9 @@ pipeline {
             steps {
                 echo 'Applying Kubernetes configurations...'
                 sh 'ls -la'  // Verify YAML files are present in the workspace
-                sh 'kubectl apply -f webapp-deployment.yaml'
-                sh 'kubectl apply -f webapp-loadbalancer.yaml'
-                sh 'kubectl apply -f webapp-service.yaml'
+                sh 'kubectl apply -f webapp-deployment.yaml --validate=false'
+                sh 'kubectl apply -f webapp-loadbalancer.yaml --validate=false'
+                sh 'kubectl apply -f webapp-service.yaml --validate=false'
             }
         }
 

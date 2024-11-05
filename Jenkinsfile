@@ -1,19 +1,21 @@
 pipeline {
-    kubernetes {
-        yaml """
-        apiVersion: v1
-        kind: Pod
-        metadata:
-          labels:
-            app: kube
-        spec:
-          containers:
-          - name: kubectl
-            image: bitnami/kubectl:latest
-            command:
-            - cat
-            tty: true
-        """
+    agent {
+        kubernetes {
+            yaml """
+            apiVersion: v1
+            kind: Pod
+            metadata:
+            labels:
+                app: kube
+            spec:
+            containers:
+            - name: kubectl
+                image: bitnami/kubectl:latest
+                command:
+                - cat
+                tty: true
+            """
+        }
     }
     stages {
         stage('Clone Repository') {

@@ -14,10 +14,12 @@ pipeline {
 
         stage('Deploy to Minikube') {
             steps {
+                sh 'kubectl get nodes'
+                sh 'kubectl get nodes -n  jenkins'
                 echo 'Applying Kubernetes configurations...'
-                sh 'kubectl apply -f webapp-deployment.yaml --validate=false'
-                sh 'kubectl apply -f webapp-loadbalancer.yaml --validate=false'
-                sh 'kubectl apply -f webapp-service.yaml --validate=false'
+                sh 'kubectl apply -f webapp-deployment.yaml'
+                sh 'kubectl apply -f webapp-loadbalancer.yaml'
+                sh 'kubectl apply -f webapp-service.yaml'
             }
         }
 

@@ -1,7 +1,7 @@
 pipeline {
     agent {
         kubernetes {
-            label 'k8s'
+            label 'k8s-agent'
         }
     }
     stages {
@@ -11,7 +11,7 @@ pipeline {
             }
         }
 
-        stage('Verify Deployment') {
+        stage('Test Verify Deployment') {
                 steps {
                     // Verify the pods are running
                     echo 'Checking pods...'
@@ -25,7 +25,7 @@ pipeline {
                     echo 'Checking load balancer...'
                     sh 'kubectl get nodes'
                 }
-            }
+        }
 
         stage('Deploy to Minikube') {
             steps {

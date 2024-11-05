@@ -11,21 +11,21 @@ pipeline {
             }
         }
 
-    stage('Verify Deployment') {
-            steps {
-                // Verify the pods are running
-                echo 'Checking pods...'
-                sh 'kubectl get pods'
+        stage('Verify Deployment') {
+                steps {
+                    // Verify the pods are running
+                    echo 'Checking pods...'
+                    sh 'kubectl get pods'
 
-                // Verify the services are active
-                echo 'Checking services...'
-                sh 'kubectl get services'
+                    // Verify the services are active
+                    echo 'Checking services...'
+                    sh 'kubectl get services'
 
-                // Check the load balancer status
-                echo 'Checking load balancer...'
-                sh 'kubectl get nodes'
+                    // Check the load balancer status
+                    echo 'Checking load balancer...'
+                    sh 'kubectl get nodes'
+                }
             }
-        }
 
         stage('Deploy to Minikube') {
             steps {

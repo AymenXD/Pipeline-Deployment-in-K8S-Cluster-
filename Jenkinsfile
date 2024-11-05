@@ -11,16 +11,6 @@ pipeline {
                 command:
                 - cat
                 tty: true
-              - name: git
-                image: alpine/git:latest
-                command:
-                - cat
-                tty: true
-              - name: maven
-                image: maven:alpine
-                command:
-                - cat
-                tty: true
             '''
         }
     }

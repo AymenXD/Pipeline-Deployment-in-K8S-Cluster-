@@ -1,10 +1,5 @@
 pipeline {
     agent any
-
-    environment {
-        KUBECONFIG = credentials('minikube_secret')  // Ensure this matches your Jenkins credential ID
-    }
-
     stages {
         stage('Clone Repository') {
             steps {
